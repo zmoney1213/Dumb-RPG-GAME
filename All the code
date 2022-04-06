@@ -1,0 +1,424 @@
+import random 
+import replit
+import time
+
+
+
+
+#Character Creation and Intro
+while True:
+  print ("Thank you for playing my game")
+  theClasses = ["Warrior", "Sentinal"]
+  name = input("Enter a name for your character: ")
+  print ("Hello " + name + " you are about to embark on an adventure")
+  print ("..................")
+  print ("You will now choose a starting class")
+  print ("Your options are: ")
+  print ("Warrior")
+  print ("Sentinal")
+  print ("..................")
+  charDesc = input("if you would like a description of the class type please type their name if not type 'r':\n")
+  theWarrior = "This class has increased damage, and base defense and luck"
+  theSentinal = "This class has increased defense, and base damage and luck"
+  # The warrior first choice
+  if charDesc == "r":
+    classChoice = input("Please choose your class: ")
+    break
+  if charDesc == "Warrior":
+    print(theWarrior)
+    nextChoice = input("Press 'e' to choose a new class to learn about, or press 'r' to choose your class and press [enter]:\n")
+  if nextChoice == "r":
+    classChoice = input("Please choose your class: ")
+    break
+  if nextChoice == "e":
+    charDesc2 = input("Please select another class: ")
+    if charDesc2 == "Sentinal":
+      print(theSentinal)
+      nextChoice2 = input("Press 'e' to choose a new class to learn about, or press 'r' to choose your class and press [enter]:\n")
+      if nextChoice2 == "r":
+        classChoice = input("Please choose your class: ")
+        break
+      if nextChoice2 == "e":
+        charDesc3 = input("Please select another class: ")
+        if charDesc3 == "Joker":
+          print(theJoker)
+          nextChoice3 = input("Press 'e' to choose a new class to learn about, or press 'r' to choose your class and press [enter]:\n")
+          if nextChoice3 == "r":
+            classChoice = input("Please choose your class: ")
+            break
+          if nextChoice3 == "e":
+            print("You have already learned about all the classes, please choose your class")
+          classChoice = input("Please choose your class: ")
+          break
+  # The sentinal first choice
+  if charDesc == "Sentinal":
+    print(theSentinal)
+    nextChoice = input("Press 'e' to choose a new class to learn about, or press 'r' to choose your class and press [enter]:\n")
+  if nextChoice == "r":
+    classChoice = input("Please choose your class: ")
+    break
+  if nextChoice == "e":
+    charDesc2 = input("Please select another class: ")
+    if charDesc2 == "Warrior":
+      print(theWarrior)
+      nextChoice2 = input("Press 'e' to choose a new class to learn about, or press 'r' to choose your class and press [enter]:\n")
+      if nextChoice2 == "r":
+        classChoice = input("Please choose your class: ")
+        break
+      if nextChoice2 == "e":
+        charDesc3 = input("Please select another class: ")
+        if charDesc3 == "Joker":
+          print(theJoker)
+          nextChoice3 = input("Press 'e' to choose a new class to learn about, or press 'r' to choose your class and press [enter]:\n")
+          if nextChoice3 == "r":
+            classChoice = input("Please choose your class: ")
+            break
+          if nextChoice3 == "e":
+            print("You have already learned about all the classes, please choose your class")
+            classChoice = input("Please choose your class: ")
+            break
+          
+          
+# Start of the game
+if classChoice in theClasses:
+  print("So a brave " + classChoice + " you are")
+  myStartGameCommand = input("I won't hold you any longer, let your journey begin: press ['e' and hit enter] to begin:\n")
+if myStartGameCommand == "e":
+  replit.clear()
+  time.sleep(1)
+
+  
+  
+# First battle
+print("'So you're the new " + classChoice + " around here'\n...")
+print("'The last one died a very brutal death, so I'm sure you're optimistic'\n...")
+print("'I wont hold you for too long, let's start your first battle, obviously an easy one'\n'Your first fight will be against a semi-smart training dummy, he can fight back'")
+firstFightBegin = input("To begin battle press 'e':\n")
+time.sleep(0.5)
+replit.clear()
+
+
+
+#First Enemy (Training Dummy)
+enemyTrainingDummyHealth = 20
+enemyTrainingDummyDamageMiss = 5
+enemyTrainingDummyDamageHit = 3
+playerHealth = 50
+if classChoice == "Sentinal":
+  enemyTrainingDummyDamageMiss = 4
+  enemyTrainingDummyDamageHit = 2
+while playerHealth >0:
+  while enemyTrainingDummyHealth > 0:
+    print("Level 1 Semi-Smart Training Dummy")
+    print("HP:" + str(enemyTrainingDummyHealth) + "/20\n...") 
+    print(name)
+    print("HP:" + str(playerHealth) + "/50\n...")
+    print ("The dummy looms over you, making you quiver, what's your first move\n...")
+    print("'1. Attack'\n...")
+    print("'2. Defend'")
+    myChoiceDummy1 = input("What would you like to do? (type the number):\n")
+    
+    #Attack
+    if myChoiceDummy1 == "1":
+      replit.clear()
+      print("Please choose an attack:\n1. Power Attack (50% chance to hit, deals increased damage)\n...\n2. Light Attack (Guarenteed hit, minimal damage)\n...\n3. Critical Attack (20% chance to hit, massive damage)\n...\n")
+      attackChoice = input()
+      
+      
+      # Light attack choice
+      if attackChoice == "2":
+        universalChance1 = random.randint(0,100)
+        #if class is warrior and is sucessful
+        if universalChance1 > 10:
+          if classChoice == "Warrior":
+            lightAttackChance1 = 3
+            replit.clear()
+            print("You delt " + str(lightAttackChance1) + " damage\n...")
+            enemyTrainingDummyHealth = enemyTrainingDummyHealth - lightAttackChance1
+            print("The dummy delt " + str(enemyTrainingDummyDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyTrainingDummyDamageHit
+            time.sleep(2.5)
+            replit.clear() 
+          #if class is not warrior
+          if classChoice != "Warrior":
+            lightAttackChance2 = 2
+            replit.clear()
+            print("You delt " + str(lightAttackChance2) + " damage to enemy\n...")
+            enemyTrainingDummyHealth = enemyTrainingDummyHealth - lightAttackChance2
+            print("The dummy delt " + str(enemyTrainingDummyDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyTrainingDummyDamageHit
+            time.sleep(2.5)
+            replit.clear()
+        #If light attack is unnsucessful
+        if universalChance1 <= 10: 
+          replit.clear()
+          print("You missed your attack, what a shame\n...")
+          print("The dummy now laughs at your failure and deals " + str(enemyTrainingDummyDamageMiss) + " damage\n...")
+          playerHealth = playerHealth - enemyTrainingDummyDamageMiss
+          time.sleep(2.5)
+          replit.clear()
+      
+          
+      #Power attack choice
+      if attackChoice == "1":
+        #if class is warrior
+        universalChance2 = random.randint(0,100)
+        #if class is warrior and is sucessful
+        if universalChance2 > 50:
+          if classChoice == "Warrior":
+            powerAttackChance1 = random.randint(6,8)
+            replit.clear()
+            print("You delt " + str(powerAttackChance1) + " damage\n...")
+            enemyTrainingDummyHealth = enemyTrainingDummyHealth - powerAttackChance1
+            print("The dummy delt " + str(enemyTrainingDummyDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyTrainingDummyDamageHit
+            time.sleep(2.5)
+            replit.clear() 
+          #if class is not warrior
+          if classChoice != "Warrior":
+            powerAttackChance2 = random.randint(5,7)
+            replit.clear()
+            print("You delt " + str(powerAttackChance2) + " damage to enemy\n...")
+            enemyTrainingDummyHealth = enemyTrainingDummyHealth - powerAttackChance2
+            print("The dummy delt " + str(enemyTrainingDummyDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyTrainingDummyDamageHit
+            time.sleep(2.5)
+            replit.clear()
+        #If power attack is unnsucessful
+        if universalChance2 <= 50: 
+          replit.clear()
+          print("You missed your attack, what a shame\n...")
+          print("The dummy now laughs at your failure and deals " + str(enemyTrainingDummyDamageMiss) + " damage\n...")
+          playerHealth = playerHealth - enemyTrainingDummyDamageMiss
+          time.sleep(2.5)
+          replit.clear()
+      
+          
+      #Critical attack choice
+      if attackChoice == "3":
+          #if class is warrior
+        universalChance3 = random.randint(0,100)
+        #if class is warrior and is sucessful
+        if universalChance3 > 80:
+          if classChoice == "Warrior":
+            criticalAttackChance1 = random.randint(10,15)
+            replit.clear()
+            print("You delt " + str(criticalAttackChance1) + " damage\n...")
+            enemyTrainingDummyHealth = enemyTrainingDummyHealth - criticalAttackChance1
+            print("The dummy delt " + str(enemyTrainingDummyDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyTrainingDummyDamageHit
+            time.sleep(2.5)
+            replit.clear() 
+          #if class is not warrior
+          if classChoice != "Warrior":
+            criticalAttackChance2 = random.randint(5,7)
+            replit.clear()
+            print("You delt " + str(criticalAttackChance2) + " damage to enemy\n...")
+            enemyTrainingDummyHealth = enemyTrainingDummyHealth - criticalAttackChance2
+            print("The dummy delt " + str(enemyTrainingDummyDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyTrainingDummyDamageHit
+            time.sleep(2.5)
+            replit.clear()
+        #If critical attack is unnsucessful
+        if universalChance3 <= 80: 
+          replit.clear()
+          print("You missed your attack, what a shame\n...")
+          print("The dummy now laughs at your failure and deals " + str(enemyTrainingDummyDamageMiss) + " damage\n...")
+          playerHealth = playerHealth - enemyTrainingDummyDamageMiss
+          time.sleep(2.5)
+          replit.clear()
+  if enemyTrainingDummyHealth <= 0:
+    break
+if playerHealth <= 0:
+  print("Game over, You Died")
+    
+
+#Defeated First Enemy
+while True:
+  print("'You defeated the Semi-Smart Training Dummy, Congrats'\n...")
+  time.sleep(5)
+  replit.clear()
+  print("'That's mearly the beginning though, that was actually the tutorial, so if you struggled it's not looking good for you'\n...")
+  print("'Lucky for you though, you have a skill point to use, not that you deserve it (you killed a training dummy)'\nPress [enter] to continue")
+  input()
+  break
+replit.clear()
+
+
+
+#First Skill Choice
+while True:
+  healthSkill = 0
+  damageSkill = 0
+  defenseSkill = 0
+  print("1. Health: " + str(healthSkill) + " (This affects total health)")
+  print("2. Damage: " + str(damageSkill) + " (This affects damage done)")
+  print("3. Defense: " + str(defenseSkill) + " (This affects damage taken)")
+  skillChoice1 = input("What would you like to put your point into:\n")
+  if skillChoice1 == "1":
+    healthSkill = healthSkill + 1
+    playerHealth = playerHealth + 25
+  if skillChoice1 == "2":
+    damageSkill = damageSkill + 1
+  if skillChoice1 == "3":
+    defenseSkill = defenseSkill + 1
+  replit.clear()
+  print("Your stats are now:\n...")
+  print("1. Health: " + str(healthSkill) + " (This affects total health)")
+  print("2. Damage: " + str(damageSkill) + " (This affects damage done)")
+  print("3. Defense: " + str(defenseSkill) + " (This affects damage taken)")
+  print("Press [enter] to continue")
+  break
+
+
+#Next Enemy
+while True:
+  input()
+  replit.clear()
+  print("'Now that you made it past the beginning, I'll leave you to it'\n...")
+  print("'You will proceed to fight 10 bosses, progressivly getting harder, beat them all and you win'")
+  print("'Lose, well it's 'game over', meaning you restart completely'\n...")
+  print("'Well goodluck and enjoy, press [enter] to start'")
+  input()
+  replit.clear()
+  break
+
+
+
+#Second Enemy (Rock'em Stock'em)
+enemyRockemStockemHealth = 100
+enemyRockemStockemMiss = 7
+enemyRockemStockemDamageHit = 5
+playerHealth = 50
+if healthSkill == 1:
+  playerHealth = 75
+if classChoice == "Sentinal":
+  enemyRockemStockemDamageMiss = 6
+  enemyRockemStockemDamageHit = 4
+while playerHealth > 0:
+  while enemyRockemStockemHealth > 0:
+    print("Level 2 Rockem Stockem")
+    print("HP:" + str(enemyRockemStockemHealth) + "/100\n...") 
+    print(name)
+    if healthSkill == 1:
+      print("HP:" + str(playerHealth) + "/75\n...")
+    elif healthSkill == 0 :
+      print("HP:" + str(playerHealth) + "/50\n...")
+    print ("The Rock'em Stock'em strikes when you never expect, you know that, and it makes you shiver\n...")
+    print("'1. Attack'\n...")
+    print("'2. Defend'")
+    myChoiceRockem1 = input("What would you like to do? (type the number):\n")
+  
+    #Attack
+    if myChoiceRockem1 == "1":
+      replit.clear()
+      print("Please choose an attack:\n1. Power Attack (50% chance to hit, deals increased damage)\n...\n2. Light Attack (Guarenteed hit, minimal damage)\n...\n3. Critical Attack (20% chance to hit, massive damage)\n...\n")
+      attackChoice = input()
+    
+    
+      if attackChoice == "2":
+          universalChance1 = random.randint(0,100)
+          #if class is warrior and is sucessful
+          if universalChance1 > 10:
+            if classChoice == "Warrior":
+              lightAttackChance1 = 3
+              replit.clear()
+              print("You delt " + str(lightAttackChance1) + " damage\n...")
+              enemyRockemStockemHealth = enemyRockemStockemHealth - lightAttackChance1
+              print("The dummy delt " + str(enemyRockemStockemDamageHit) + " damage to you\n...")
+              playerHealth = playerHealth - enemyRockemStockemDamageHit
+              time.sleep(2.5)
+              replit.clear()
+            
+            #if class is not warrior
+            if classChoice != "Warrior":
+              lightAttackChance2 = 2
+              replit.clear()
+              print("You delt " + str(lightAttackChance2) + " damage to enemy\n...")
+              enemyRockemStockemHealth = enemyRockemStockemHealth - lightAttackChance2
+              print("The dummy delt " + str(enemyRockemStockemDamageHit) + " damage to you\n...")
+              playerHealth = playerHealth - enemyRockemStockemDamageHit
+              time.sleep(2.5)
+              replit.clear()
+          #If light attack is unnsucessful
+          if universalChance1 <= 10: 
+            replit.clear()
+            print("You missed your attack, what a shame\n...")
+            print("The dummy now laughs at your failure and deals " + str(enemyRockemStockemMiss) + " damage\n...")
+            playerHealth = playerHealth - enemyRockemStockemMiss
+            time.sleep(2.5)
+            replit.clear()
+         
+        
+            
+      #Power attack choice
+      if attackChoice == "1":
+        #if class is warrior
+        universalChance2 = random.randint(0,100)
+        #if class is warrior and is sucessful
+        if universalChance2 > 50:
+          if classChoice == "Warrior":
+            powerAttackChance1 = random.randint(6,8)
+            replit.clear()
+            print("You delt " + str(powerAttackChance1) + " damage\n...")
+            enemyRockemStockemHealth = enemyRockemStockemHealth - powerAttackChance1
+            print("The dummy delt " + str(enemyRockemStockemDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyRockemStockemDamageHit
+            time.sleep(2.5)
+            replit.clear() 
+          #if class is not warrior
+          if classChoice != "Warrior":
+            powerAttackChance2 = random.randint(5,7)
+            replit.clear()
+            print("You delt " + str(powerAttackChance2) + " damage to enemy\n...")
+            enemyRockemStockemHealth = enemyRockemStockemHealth - powerAttackChance2
+            print("The dummy delt " + str(enemyRockemStockemDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyRockemStockemDamageHit
+            time.sleep(2.5)
+            replit.clear()
+        #If power attack is unnsucessful
+        if universalChance2 <= 50: 
+          replit.clear()
+          print("You missed your attack, what a shame\n...")
+          print("The dummy now laughs at your failure and deals " + str(enemyRockemStockemMiss) + " damage\n...")
+          playerHealth = playerHealth - enemyRockemStockemMiss
+          time.sleep(2.5)
+          replit.clear()
+      
+          
+      #Critical attack choice
+      if attackChoice == "3":
+          #if class is warrior
+        universalChance3 = random.randint(0,100)
+        #if class is warrior and is sucessful
+        if universalChance3 > 80:
+          if classChoice == "Warrior":
+            criticalAttackChance1 = random.randint(10,15)
+            replit.clear()
+            print("You delt " + str(criticalAttackChance1) + " damage\n...")
+            enemyRockemStockemHealth = enemyRockemStockemHealth - criticalAttackChance1
+            print("The dummy delt " + str(enemyRockemStockemDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyRockemStockemDamageHit
+            time.sleep(2.5)
+            replit.clear()
+          
+          #if class is not warrior
+          if classChoice != "Warrior":
+            criticalAttackChance2 = random.randint(5,7)
+            replit.clear()
+            print("You delt " + str(criticalAttackChance2) + " damage to enemy\n...")
+            enemyRockemStockemHealth = enemyRockemStockemHealth - criticalAttackChance2
+            print("The dummy delt " + str(enemyRockemStockemDamageHit) + " damage to you\n...")
+            playerHealth = playerHealth - enemyRockemStockemDamageHit
+            time.sleep(2.5)
+            replit.clear()
+          
+        #If critical attack is unnsucessful
+        if universalChance3 <= 80: 
+          replit.clear()
+          print("You missed your attack, what a shame\n...")
+          print("The dummy now laughs at your failure and deals " + str(enemyRockemStockemMiss) + " damage\n...")
+          playerHealth = playerHealth - enemyRockemStockemMiss
+          time.sleep(2.5)
+          replit.clear()
+        
